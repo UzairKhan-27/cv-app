@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../styles/General.css";
+import { Education } from "./Education";
 
 function General() {
 	const [submitStatus, setSubmitStatus] = useState(false);
@@ -21,7 +22,7 @@ function General() {
 
 	return (
 		<>
-			<form className={submitStatus ? "hidden" : "personal-info"}>
+			<form className={submitStatus ? "nhidden" : "personal-info"}>
 				<h1>Personal Information</h1>
 				<label htmlFor="name">
 					Full Name
@@ -81,6 +82,10 @@ function General() {
 				<button onClick={handleSubmitClick} type="submit">
 					Submit
 				</button>
+				<Education
+					className={submitStatus ? "hidden" : ""}
+					submitStatus={submitStatus}
+				/>
 			</form>
 			{submitStatus && (
 				<>
