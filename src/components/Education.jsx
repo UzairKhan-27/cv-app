@@ -1,7 +1,9 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 
-function Education(submitStatus) {
+function Education({ className, submitStatus }) {
 	const [inputs, setInputs] = useState({});
+	console.log(submitStatus);
 
 	function handleChange(event) {
 		const name = event.target.name;
@@ -9,12 +11,17 @@ function Education(submitStatus) {
 		setInputs((values) => ({ ...values, [name]: value }));
 	}
 
+	function handleAddEducation(event) {
+		event.preventDefault();
+	}
+
 	return (
 		<>
-			<form className={submitStatus ? "hidden" : "personal-info"}>
-				<h1>Personal</h1>
+			<div className={"education " + className}>
+				<h1>Education</h1>
+				<button onClick={handleAddEducation}>Add Education</button>
 				<label htmlFor="name">
-					Full Name
+					Institution Name
 					<input
 						onChange={handleChange}
 						required
@@ -23,8 +30,46 @@ function Education(submitStatus) {
 						value={inputs.name || ""}
 					/>
 				</label>
-				<br />
-			</form>
+
+				<label htmlFor="degree">
+					Education Title
+					<input
+						onChange={handleChange}
+						required
+						name="degree"
+						type="text"
+						value={inputs.degree || ""}
+					/>
+				</label>
+
+				<label htmlFor="start">
+					Start Date
+					<input
+						onChange={handleChange}
+						name="start"
+						type="date"
+						value={inputs.start || ""}
+					/>
+				</label>
+
+				<label htmlFor="end">
+					End Date
+					<input
+						onChange={handleChange}
+						name="end"
+						type="date"
+						value={inputs.start || "Present"}
+					/>
+				</label>
+			</div>
+			{submitStatus && (
+				<>
+					<h3>{inputs.name}</h3>
+					<h3>{inputs.degree}</h3>
+					<h3>{inputs.start}</h3>
+					<h3>{inputs.end}</h3>
+				</>
+			)}
 		</>
 	);
 }
