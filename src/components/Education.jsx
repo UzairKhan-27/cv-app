@@ -2,17 +2,32 @@
 import { useState } from "react";
 
 function Education({ className, submitStatus }) {
-	const [inputs, setInputs] = useState({});
-	console.log(submitStatus);
-
-	function handleChange(event) {
+	const [educationList, setEducationList] = useState([]);
+	function handleChange(event, id) {
+		console.log(id);
+		console.log(educationList);
 		const name = event.target.name;
 		const value = event.target.value;
-		setInputs((values) => ({ ...values, [name]: value }));
+		console.log(value);
+		setEducationList((prevList) =>
+			prevList.map((list) =>
+				list.id === id ? { ...list, [name]: value } : list,
+			),
+		);
 	}
 
 	function handleAddEducation(event) {
 		event.preventDefault();
+		setEducationList((prevList) => [
+			...prevList,
+			{
+				id: prevList.length,
+				name: "",
+				degree: "",
+				start: "",
+				end: "",
+			},
+		]);
 	}
 
 	return (
@@ -20,54 +35,60 @@ function Education({ className, submitStatus }) {
 			<div className={"education " + className}>
 				<h1>Education</h1>
 				<button onClick={handleAddEducation}>Add Education</button>
-				<label htmlFor="name">
-					Institution Name
-					<input
-						onChange={handleChange}
-						required
-						name="name"
-						type="text"
-						value={inputs.name || ""}
-					/>
-				</label>
+				{educationList.map((list) => (
+					<div key={list.id} className="education-list">
+						<label htmlFor="name">
+							Institution Name
+							<input
+								required
+								name="name"
+								type="text"
+								value={list.name || ""}
+								onChange={(e) => handleChange(e, list.id)}
+							/>
+						</label>
 
-				<label htmlFor="degree">
-					Education Title
-					<input
-						onChange={handleChange}
-						required
-						name="degree"
-						type="text"
-						value={inputs.degree || ""}
-					/>
-				</label>
+						<label htmlFor="degree">
+							Education Title
+							<input
+								required
+								name="degree"
+								type="text"
+								value={list.degree || ""}
+								onChange={(e) => handleChange(e, list.id)}
+							/>
+						</label>
 
-				<label htmlFor="start">
-					Start Date
-					<input
-						onChange={handleChange}
-						name="start"
-						type="date"
-						value={inputs.start || ""}
-					/>
-				</label>
+						<label htmlFor="start">
+							Start Date
+							<input
+								name="start"
+								type="date"
+								value={list.start || ""}
+								onChange={(e) => handleChange(e, list.id)}
+							/>
+						</label>
 
-				<label htmlFor="end">
-					End Date
-					<input
-						onChange={handleChange}
-						name="end"
-						type="date"
-						value={inputs.start || "Present"}
-					/>
-				</label>
+						<label htmlFor="end">
+							End Date
+							<input
+								name="end"
+								type="date"
+								value={list.end || "Present"}
+								onChange={(e) => handleChange(e, list.id)}
+							/>
+						</label>
+					</div>
+				))}
 			</div>
+
 			{submitStatus && (
 				<>
-					<h3>{inputs.name}</h3>
-					<h3>{inputs.degree}</h3>
-					<h3>{inputs.start}</h3>
-					<h3>{inputs.end}</h3>
+					{educationList.map((list) => (
+						<div key={list.id}>
+							<h3>{list.name}</h3>
+						</div>
+					))}
 				</>
 			)}
 		</>
