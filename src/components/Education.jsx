@@ -41,7 +41,6 @@ function Education({ className, submitStatus }) {
 		<>
 			<div className={"education " + className}>
 				<h1>Education</h1>
-				<button onClick={handleAddEducation}>Add Education</button>
 				{educationList.map((list) => (
 					<div key={list.id} className="education-list">
 						<label htmlFor="name">
@@ -90,6 +89,7 @@ function Education({ className, submitStatus }) {
 						</button>
 					</div>
 				))}
+				<button onClick={handleAddEducation}>Add Education</button>
 			</div>
 
 			{submitStatus && (
