@@ -1,37 +1,49 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
+import { Education } from "./components/Education";
+import { Work } from "./components/Work";
+import { General } from "./components/General";
 
 function App() {
-	const [count, setCount] = useState(0);
+	const [submitStatus, setSubmitStatus] = useState(false);
+
+	function handleSubmitClick(event) {
+		event.preventDefault();
+		setSubmitStatus(true);
+	}
+
+	function handleEditClick() {
+		setSubmitStatus(false);
+	}
 
 	return (
 		<>
-			<div>
-				<a href="https://vitejs.dev" target="_blank">
-					<img src={viteLogo} className="logo" alt="Vite logo" />
-				</a>
-				<a href="https://react.dev" target="_blank">
-					<img
-						src={reactLogo}
-						className="logo react"
-						alt="React logo"
-					/>
-				</a>
-			</div>
-			<h1>Vite + React</h1>
-			<div className="card">
-				<button onClick={() => setCount((count) => count + 1)}>
-					count is {count}
+			<form className="form-container">
+				<General
+					className={submitStatus ? "hidden" : ""}
+					submitStatus={submitStatus}
+				/>
+
+				<Education
+					className={submitStatus ? "hidden" : ""}
+					submitStatus={submitStatus}
+				/>
+
+				<Work
+					className={submitStatus ? "hidden" : ""}
+					submitStatus={submitStatus}
+				/>
+
+				<button onClick={handleSubmitClick} type="submit">
+					Submit
 				</button>
-				<p>
-					Edit <code>src/App.jsx</code> and save to test HMR
-				</p>
-			</div>
-			<p className="read-the-docs">
-				Click on the Vite and React logos to learn more
-			</p>
+			</form>
+
+			{submitStatus && (
+				<button onClick={handleEditClick} type="submit">
+					Edit
+				</button>
+			)}
 		</>
 	);
 }
