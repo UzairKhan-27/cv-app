@@ -21,13 +21,20 @@ function Education({ className, submitStatus }) {
 		setEducationList((prevList) => [
 			...prevList,
 			{
-				id: prevList.length,
+				id: Date.now(),
 				name: "",
 				degree: "",
 				start: "",
 				end: "",
 			},
 		]);
+	}
+
+	function handleDelete(event, id) {
+		event.preventDefault();
+		setEducationList((prevList) =>
+			prevList.filter((list) => list.id !== id),
+		);
 	}
 
 	return (
@@ -78,6 +85,9 @@ function Education({ className, submitStatus }) {
 								onChange={(e) => handleChange(e, list.id)}
 							/>
 						</label>
+						<button onClick={(e) => handleDelete(e, list.id)}>
+							Delete
+						</button>
 					</div>
 				))}
 			</div>
@@ -87,6 +97,9 @@ function Education({ className, submitStatus }) {
 					{educationList.map((list) => (
 						<div key={list.id}>
 							<h3>{list.name}</h3>
+							<h3>{list.degree}</h3>
+							<h3>{list.start}</h3>
+							<h3>{list.end}</h3>
 						</div>
 					))}
 				</>
