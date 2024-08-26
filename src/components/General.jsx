@@ -1,9 +1,8 @@
 import { useState } from "react";
 import "../styles/General.css";
-import { Education } from "./Education";
+/* eslint-disable react/prop-types */
 
-function General() {
-	const [submitStatus, setSubmitStatus] = useState(false);
+function General({ submitStatus, className }) {
 	const [inputs, setInputs] = useState({});
 
 	function handleChange(event) {
@@ -12,17 +11,9 @@ function General() {
 		setInputs((values) => ({ ...values, [name]: value }));
 	}
 
-	function handleSubmitClick(event) {
-		event.preventDefault();
-		setSubmitStatus(true);
-	}
-	function handleEditClick() {
-		setSubmitStatus(false);
-	}
-
 	return (
 		<>
-			<form className={submitStatus ? "nhidden" : "personal-info"}>
+			<div className={"general " + className}>
 				<h1>Personal Information</h1>
 				<label htmlFor="name">
 					Full Name
@@ -34,7 +25,6 @@ function General() {
 						value={inputs.name || ""}
 					/>
 				</label>
-				<br />
 				<label htmlFor="email">
 					Email
 					<input
@@ -45,7 +35,6 @@ function General() {
 						value={inputs.email || ""}
 					/>
 				</label>
-				<br />
 				<label htmlFor="contact">
 					Contact Number
 					<input
@@ -56,7 +45,6 @@ function General() {
 						value={inputs.contact || ""}
 					/>
 				</label>
-				<br />
 				<label htmlFor="city">
 					City
 					<input
@@ -67,7 +55,6 @@ function General() {
 						value={inputs.city || ""}
 					/>
 				</label>
-				<br />
 				<label htmlFor="country">
 					Country
 					<input
@@ -78,18 +65,10 @@ function General() {
 						value={inputs.country || ""}
 					/>
 				</label>
-				<br />
-				<button onClick={handleSubmitClick} type="submit">
-					Submit
-				</button>
-				<Education
-					className={submitStatus ? "hidden" : ""}
-					submitStatus={submitStatus}
-				/>
-			</form>
+			</div>
+
 			{submitStatus && (
 				<>
-					<button onClick={handleEditClick}>Edit</button>
 					<h3>{inputs.name}</h3>
 					<h3>{inputs.age}</h3>
 					<h3>{inputs.email}</h3>
