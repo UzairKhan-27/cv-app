@@ -35,13 +35,21 @@ function App() {
 					submitStatus={submitStatus}
 				/>
 
-				<button onClick={handleSubmitClick} type="submit">
+				<button
+					className={submitStatus ? "hidden" : ""}
+					onClick={handleSubmitClick}
+					type="submit"
+				>
 					Submit
 				</button>
 			</form>
 
 			{submitStatus && (
-				<button onClick={handleEditClick} type="submit">
+				<button
+					className="edit"
+					onClick={handleEditClick}
+					type="submit"
+				>
 					Edit
 				</button>
 			)}
