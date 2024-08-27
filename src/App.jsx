@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import "./styles/Common.css";
 import { Education } from "./components/Education";
 import { Work } from "./components/Work";
 import { General } from "./components/General";
