@@ -1,0 +1,41 @@
+.education,
+.work,
+.general {
+	background-color: whitesmoke;
+	padding: 1rem;
+	margin: 2rem 0;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	border-radius: 1rem;
+}
+.education-list,
+.work-list,
+.general-list {
+	background-color: #b0c4de;
+	padding: 1rem;
+	grid-column: 2;
+	margin: 1rem 0;
+	border-radius: 1rem;
+}
+
+button {
+	display: grid;
+	margin: 1rem 0;
+	grid-column: 2;
+	background-color: #b0c4de;
+}
+h1 {
+	grid-column: 2;
+}
+input {
+	font-size: 1rem;
+}
+
+.hidden {
+	display: none;
+}
+label {
+	display: grid;
+	grid-column: 2;
+	font-size: 1.3rem;
+}
