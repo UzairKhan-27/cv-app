@@ -97,14 +97,18 @@ function Work({ submitStatus, className }) {
 			</div>
 			{submitStatus && (
 				<>
+					<h2>Professional Experience</h2>
 					{workList.map((list) => (
-						<div key={list.id}>
-							<p>{list.name}</p>
-							<p>{list.title}</p>
-							<p>{list.start}</p>
-							<p>{list.end}</p>
-							<p>{list.responsibility}</p>
-						</div>
+						<section className="education-item" key={list.id}>
+							<ul>
+								<li>{list.name}</li>
+								<li>
+									<em>{list.title}</em>
+								</li>
+								<li>{list.responsibility}</li>
+								<li>{list.start + " - " + list.end}</li>
+							</ul>
+						</section>
 					))}
 				</>
 			)}
