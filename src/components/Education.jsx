@@ -94,13 +94,17 @@ function Education({ className, submitStatus }) {
 
 			{submitStatus && (
 				<>
+					<h2>Education</h2>
 					{educationList.map((list) => (
-						<div key={list.id}>
-							<h3>{list.name}</h3>
-							<h3>{list.degree}</h3>
-							<h3>{list.start}</h3>
-							<h3>{list.end}</h3>
-						</div>
+						<section className="education-item" key={list.id}>
+							<ul>
+								<li>{list.name}</li>
+								<li>
+									<em>{list.degree}</em>
+								</li>
+								<li>{list.start + " - " + list.end}</li>
+							</ul>
+						</section>
 					))}
 				</>
 			)}
