@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../styles/CV.css";
 /* eslint-disable react/prop-types */
 
 function General({ submitStatus, className }) {
@@ -76,11 +77,16 @@ function General({ submitStatus, className }) {
 
 			{submitStatus && (
 				<>
-					<h3>{inputs.name}</h3>
-					<h3>{inputs.age}</h3>
-					<h3>{inputs.email}</h3>
-					<h3>{inputs.city}</h3>
-					<h3>{inputs.country}</h3>
+					<header>
+						<div className="name">
+							<h1>{inputs.name}</h1>
+						</div>
+						<div className="sub">
+							<p>{inputs.email}</p>
+							<p>{inputs.city + " , " + inputs.country}</p>
+							<p>{inputs.contact}</p>
+						</div>
+					</header>
 				</>
 			)}
 		</>
